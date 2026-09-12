@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT FALZ — Personal Website</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+        html{scroll-behavior:smooth}
+        body{background:#0a1628;color:#e8f0fe;overflow-x:hidden}
+
+        /* HEADER */
+        header{
+            position:sticky;top:0;z-index:100;
+            background:rgba(10,22,40,0.85);backdrop-filter:blur(12px);
+            border-bottom:1px solid #1a3a5c;padding:0 40px;
+        }
+        .header-inner{
+            max-width:1100px;margin:0 auto;display:flex;
+            justify-content:space-between;align-items:center;padding:16px 0;
+        }
+        .logo{display:flex;align-items:center;gap:12px}
+        .logo-icon{
+            width:44px;height:44px;border-radius:12px;
+            background:linear-gradient(135deg,#1a73e8,#4a9eff);
+            display:flex;align-items:center;justify-content:center;
+            font-size:22px;font-weight:800;color:#fff;
+            box-shadow:0 0 24px rgba(74,158,255,0.4);
+        }
+        .logo h1{font-size:17px;font-weight:700}
+        .logo p{font-size:11px;color:#9aa8c7}
+        nav ul{display:flex;gap:26px;list-style:none}
+        nav a{
+            color:#9aa8c7;text-decoration:none;font-size:14px;font-weight:500;
+            transition:0.3s;padding:6px 0;border-bottom:2px solid transparent;
+        }
+        nav a:hover{color:#4a9eff;border-bottom-color:#4a9eff}
+
+        /* HERO */
+        .hero{
+            padding:100px 40px 80px;text-align:center;position:relative;overflow:hidden;
+        }
+        .hero::before{
+            content:'';position:absolute;top:-30%;right:-10%;width:500px;height:500px;
+            background:radial-gradient(circle,rgba(74,158,255,0.12),transparent 70%);
+            border-radius:50%;pointer-events:none;
+        }
+        .hero::after{
+            content:'';position:absolute;bottom:-30%;left:-10%;width:400px;height:400px;
+            background:radial-gradient(circle,rgba(26,115,232,0.1),transparent 70%);
+            border-radius:50%;pointer-events:none;
+        }
+        .hero-content{position:relative;z-index:1;max-width:800px;margin:0 auto}
+        .hero-avatar{
+            width:130px;height:130px;border-radius:50%;
+            background:linear-gradient(135deg,#1a73e8,#4a9eff);
+            display:flex;align-items:center;justify-content:center;
+            font-size:60px;font-weight:800;color:#fff;margin:0 auto 28px;
+            box-shadow:0 0 60px rgba(74,158,255,0.4);
+            border:4px solid rgba(74,158,255,0.3);
+            animation:floatAvatar 3s ease-in-out infinite;
+        }
+        @keyframes floatAvatar{
+            0%,100%{transform:translateY(0)}
+            50%{transform:translateY(-10px)}
+        }
+        .hero h2{font-size:44px;font-weight:800;margin-bottom:12px;line-height:1.15}
+        .hero h2 span{
+            background:linear-gradient(135deg,#4a9eff,#1a73e8);
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+        }
+        .hero .tagline{
+            font-size:16px;color:#9aa8c7;margin-bottom:28px;
+            letter-spacing:2px;text-transform:uppercase;
+        }
+        .hero .desc{
+            font-size:16px;color:#9aa8c7;line-height:1.8;max-width:600px;
+            margin:0 auto 36px;
+        }
+        .btn{
+            display:inline-block;padding:14px 36px;border-radius:50px;
+            font-size:15px;font-weight:600;text-decoration:none;
+            transition:0.3s;cursor:pointer;border:none;
+        }
+        .btn-primary{
+            background:linear-gradient(135deg,#1a73e8,#4a9eff);color:#fff;
+            box-shadow:0 8px 30px rgba(74,158,255,0.3);
+        }
+        .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(74,158,255,0.5)}
+        .btn-outline{
+            background:transparent;color:#4a9eff;border:2px solid #1a3a5c;
+        }
+        .btn-outline:hover{background:rgba(74,158,255,0.1);border-color:#4a9eff}
+
+        /* SECTIONS */
+        section{padding:80px 40px}
+        .container{max-width:1100px;margin:0 auto}
+        .section-title{text-align:center;margin-bottom:50px}
+        .section-title h3{font-size:32px;font-weight:800;margin-bottom:10px}
+        .section-title h3 span{
+            background:linear-gradient(135deg,#4a9eff,#1a73e8);
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+        }
+        .section-title p{font-size:15px;color:#6b7c9e}
+        .section-title .line{
+            width:60px;height:4px;border-radius:2px;margin:16px auto 0;
+            background:linear-gradient(90deg,#1a73e8,#4a9eff);
+        }
+
+        /* TENTANG */
+        .tentang-grid{
+            display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;
+        }
+        .tentang-text p{font-size:15px;color:#9aa8c7;line-height:1.9;margin-bottom:16px}
+        .tentang-text strong{color:#4a9eff}
+        .info-list{list-style:none;margin-top:20px}
+        .info-list li{
+            padding:10px 0;border-bottom:1px solid #1a3a5c;font-size:14px;
+            display:flex;justify-content:space-between;color:#9aa8c7;
+        }
+        .info-list li span{color:#4a9eff;font-weight:600}
+        .tentang-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        .stat-box{
+            background:linear-gradient(135deg,#0d2137,#142d4a);
+            border:1px solid #1a3a5c;border-radius:16px;padding:28px 20px;text-align:center;
+            transition:0.3s;
+        }
+        .stat-box:hover{transform:translateY(-4px);border-color:#4a9eff}
+        .stat-box .num{font-size:34px;font-weight:800;color:#4a9eff}
+        .stat-box .label{font-size:12px;color:#9aa8c7;margin-top:6px;text-transform:uppercase;letter-spacing:1px}
+
+        /* SKILL */
+        .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+        .skill-card{
+            background:linear-gradient(135deg,#0d2137,#142d4a);
+            border:1px solid #1a3a5c;border-radius:16px;padding:30px 24px;
+            transition:0.3s;text-align:center;
+        }
+        .skill-card:hover{transform:translateY(-6px);border-color:#4a9eff;box-shadow:0 16px 40px rgba(26,115,232,0.15)}
+        .skill-icon{font-size:40px;margin-bottom:14px}
+        .skill-card h4{font-size:17px;font-weight:700;margin-bottom:8px}
+        .skill-card p{font-size:13px;color:#9aa8c7;line-height:1.7}
+        .skill-bar{height:5px;background:#1a3a5c;border-radius:10px;margin-top:16px;overflow:hidden}
+        .skill-bar div{height:100%;background:linear-gradient(90deg,#1a73e8,#4a9eff);border-radius:10px}
+
+        /* KONTAK */
+        .kontak-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+        .kontak-info p{font-size:15px;color:#9aa8c7;line-height:1.9;margin-bottom:24px}
+        .kontak-item{
+            display:flex;align-items:center;gap:16px;padding:18px 20px;
+            background:linear-gradient(135deg,#0d2137,#142d4a);
+            border:1px solid #1a3a5c;border-radius:12px;margin-bottom:12px;transition:0.3s;
+        }
+        .kontak-item:hover{border-color:#4a9eff;transform:translateX(6px)}
+        .kontak-item .icon{
+            width:48px;height:48px;border-radius:12px;
+            background:rgba(74,158,255,0.12);display:flex;align-items:center;
+            justify-content:center;font-size:22px;flex-shrink:0;
+        }
+        .kontak-item .info h4{font-size:14px;font-weight:700;margin-bottom:3px}
+        .kontak-item .info p{font-size:13px;color:#9aa8c7;margin:0}
+
+        .sosmed-box{
+            background:linear-gradient(135deg,#0d2137,#142d4a);
+            border:1px solid #1a3a5c;border-radius:16px;padding:36px 28px;text-align:center;
+        }
+        .sosmed-box .sosmed-icon{font-size:60px;margin-bottom:16px}
+        .sosmed-box h4{font-size:20px;font-weight:800;margin-bottom:8px}
+        .sosmed-box p{font-size:14px;color:#9aa8c7;margin-bottom:24px}
+        .sosmed-list{display:flex;flex-direction:column;gap:12px}
+        .sosmed-list a{
+            display:flex;align-items:center;justify-content:center;gap:10px;
+            padding:14px;border-radius:12px;text-decoration:none;
+            font-size:14px;font-weight:600;transition:0.3s;color:#fff;
+        }
+        .sosmed-list a.ig{background:linear-gradient(135deg,#E1306C,#833AB4)}
+        .sosmed-list a.gh{background:linear-gradient(135deg,#333,#24292e)}
+        .sosmed-list a.yt{background:linear-gradient(135deg,#FF0000,#c4302b)}
+        .sosmed-list a:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,0.3)}
+
+        /* FOOTER */
+        footer{
+            background:#081020;border-top:1px solid #1a3a5c;
+            padding:40px 40px 20px;text-align:center;
+        }
+        .footer-social{display:flex;justify-content:center;gap:16px;margin-bottom:20px}
+        .footer-social a{
+            width:44px;height:44px;border-radius:50%;border:1px solid #1a3a5c;
+            display:flex;align-items:center;justify-content:center;font-size:18px;
+            text-decoration:none;transition:0.3s;
+        }
+        .footer-social a:hover{background:#1a73e8;border-color:#1a73e8;transform:translateY(-3px)}
+        .footer-text{font-size:13px;color:#6b7c9e}
+        .footer-text span{color:#4a9eff;font-weight:600}
+
+        /* RESPONSIVE */
+        @media(max-width:850px){
+            header{padding:0 20px}
+            .header-inner{flex-direction:column;gap:12px;padding:12px 0}
+            nav ul{gap:16px;flex-wrap:wrap;justify-content:center}
+            .hero{padding:70px 20px 60px}
+            .hero h2{font-size:30px}
+            .hero-avatar{width:100px;height:100px;font-size:44px}
+            section{padding:60px 20px}
+            .tentang-grid,.kontak-grid{grid-template-columns:1fr;gap:30px}
+            .section-title h3{font-size:26px}
+        }
+        @media(max-width:500px){
+            .hero h2{font-size:24px}
+            .hero .tagline{font-size:13px;letter-spacing:1px}
+            .btn{padding:12px 28px;font-size:14px}
+            .tentang-stats{grid-template-columns:1fr}
+            .stat-box .num{font-size:28px}
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-inner">
+        <div class="logo">
+            <div class="logo-icon">F</div>
+            <div>
+                <h1>PROJECT FALZ</h1>
+                <p>Personal Website</p>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#skill">Skill</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO -->
+<div class="hero" id="home">
+    <div class="hero-content">
+        <div class="hero-avatar">F</div>
+        <h2>Halo, Gue <span>FALZ</span></h2>
+        <div class="tagline">Creator • Developer • Gamer</div>
+        <p class="desc">
+            Selamat datang di website pribadi gue. Di sini lo bisa kenal gue lebih dekat,
+            liat skill gue, dan kontak gue kalo mau ngobrol atau kerjasama.
+        </p>
+        <a href="#kontak" class="btn btn-primary">Hubungi Gue</a>
+        <a href="#tentang" class="btn btn-outline">Kenal Lebih Dekat</a>
+    </div>
+</div>
+
+<!-- TENTANG -->
+<section id="tentang">
+    <div class="container">
+        <div class="section-title">
+            <h3>Tentang <span>Gue</span></h3>
+            <p>Siapa sih FALZ itu?</p>
+            <div class="line"></div>
+        </div>
+        <div class="tentang-grid">
+            <div class="tentang-text">
+                <p>
+                    Gue <strong>FALZ</strong>, seorang kreator muda yang suka ngulik teknologi,
+                    coding, dan gaming. Gue percaya bahwa dengan skill dan kreativitas,
+                    siapapun bisa bikin sesuatu yang keren.
+                </p>
+                <p>
+                    Di <strong>PROJECT FALZ</strong> ini, gue bakal share karya, project,
+                    dan pengalaman gue. Kalo lo tertarik kerjasama atau cuma mau ngobrol,
+                    langsung aja kontak gue.
+                </p>
+                <ul class="info-list">
+                    <li>Nama <span>FALZ</span></li>
+                    <li>Status <span>Pelajar / Creator</span></li>
+                    <li>Lokasi <span>Indonesia</span></li>
+                    <li>Fokus <span>Web & Bot Development</span></li>
+                </ul>
+            </div>
+            <div class="tentang-stats">
+                <div class="stat-box"><div class="num">3+</div><div class="label">Tahun Coding</div></div>
+                <div class="stat-box"><div class="num">20+</div><div class="label">Project</div></div>
+                <div class="stat-box"><div class="num">100%</div><div class="label">Semangat</div></div>
+                <div class="stat-box"><div class="num">24/7</div><div class="label">Online</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKILL -->
+<section id="skill" style="background:#081020">
+    <div class="container">
+        <div class="section-title">
+            <h3>Skill <span>Gue</span></h3>
+            <p>Yang gue kuasai dan terus gue kembangkan</p>
+            <div class="line"></div>
+        </div>
+        <div class="skill-grid">
+            <div class="skill-card">
+                <div class="skill-icon">💻</div>
+                <h4>Web Development</h4>
+                <p>HTML, CSS, JavaScript, Python</p>
+                <div class="skill-bar"><div style="width:85%"></div></div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h4>Bot Development</h4>
+                <p>WhatsApp Bot, Telegram Bot</p>
+                <div class="skill-bar"><div style="width:75%"></div></div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h4>Design</h4>
+                <p>UI/UX, Poster, Thumbnail</p>
+                <div class="skill-bar"><div style="width:70%"></div></div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎮</div>
+                <h4>Gaming</h4>
+                <p>Mobile Legends, PUBG, dll</p>
+                <div class="skill-bar"><div style="width:90%"></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- KONTAK -->
+<section id="kontak">
+    <div class="container">
+        <div class="section-title">
+            <h3>Kontak <span>Gue</span></h3>
+            <p>Mau ngobrol atau kerjasama? Langsung aja!</p>
+            <div class="line"></div>
+        </div>
+        <div class="kontak-grid">
+            <div class="kontak-info">
+                <p>
+                    Gue selalu terbuka buat ngobrol, diskusi, atau kerjasama project.
+                    Jangan ragu buat hubungi gue lewat sosial media di bawah ini.
+                </p>
+                <div class="kontak-item">
+                    <div class="icon">📧</div>
+                    <div class="info">
+                        <h4>Email</h4>
+                        <p>falz@projectfalz.id</p>
+                    </div>
+                </div>
+                <div class="kontak-item">
+                    <div class="icon">📍</div>
+                    <div class="info">
+                        <h4>Lokasi</h4>
+                        <p>Indonesia</p>
+                    </div>
+                </div>
+                <div class="kontak-item">
+                    <div class="icon">💼</div>
+                    <div class="info">
+                        <h4>Kerjasama</h4>
+                        <p>Terbuka untuk project & kolaborasi</p>
+                    </div>
+                </div>
+            </div>
+            <div class="sosmed-box">
+                <div class="sosmed-icon">🌐</div>
+                <h4>Follow Sosial Media Gue</h4>
+                <p>Kepoin terus karya & aktivitas gue di sosmed</p>
+                <div class="sosmed-list">
+                    <a href="#" class="ig" target="_blank">📷 Instagram</a>
+                    <a href="#" class="gh" target="_blank">💻 GitHub</a>
+                    <a href="#" class="yt" target="_blank">▶️ YouTube</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-social">
+        <a href="#" title="Instagram">📷</a>
+        <a href="#" title="GitHub">💻</a>
+        <a href="#" title="YouTube">▶️</a>
+        <a href="#" title="Email">📧</a>
+    </div>
+    <div class="footer-text">
+        © 2026 <span>PROJECT FALZ</span> — Made with 💙 by FALZ
+    </div>
+</footer>
+
+<script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // Scroll animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.stat-box, .skill-card, .kontak-item, .sosmed-box').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+
+    console.log('✅ PROJECT FALZ - Website Loaded');
+</script>
+</body>
+</html>
